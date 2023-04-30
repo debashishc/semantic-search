@@ -1,7 +1,7 @@
 import os
 import re
 import requests
-
+import argparse
 
 class ArxivPaperDownloader:
     """
@@ -73,7 +73,18 @@ class ArxivPaperDownloader:
         return match.group(1) if match else None
 
 
+
 if __name__ == '__main__':
-    FILENAME = 'paper_ids.txt'
-    downloader = ArxivPaperDownloader('arxiv_papers')
-    downloader.download_papers_from_file(FILENAME)
+    # Set up command-line arguments
+    parser = argparse.ArgumentParser(description='Download arXiv papers based on paper IDs from a text file.')
+    parser.add_argument('-f', '--filename', required=True, help='Path to the text file containing paper IDs and titles')
+    parser.add_argument('-o', '--output', default='arxiv_papers', help='Output folder where downloaded papers will be saved (default: arxiv_papers)')
+
+    # Parse command-line arguments
+    args = parser.parse_args()
+
+    # Instantiate the downloader with the specified output folder
+    downloader = ArxivPaperDownloader(args.output)
+
+    # Download the papers from the text file
+    downloader.download_papers_from_file(args.filename)
