@@ -1,11 +1,19 @@
 import os
+import re
 import requests
+
 
 class ArxivPaperDownloader:
     """
-    Downloads arXiv papers based on their IDs and saves them in a specified output folder.
+    A class to download arXiv papers based on their paper IDs.
     """
+
     def __init__(self, output_folder='arxiv_papers'):
+        """
+        Initializes the ArxivPaperDownloader with the specified output folder.
+        
+        :param output_folder: str, the folder where downloaded papers will be saved (default: 'arxiv_papers')
+        """
         self.output_folder = output_folder
         if not os.path.exists(output_folder):
             os.makedirs(output_folder)
@@ -17,15 +25,9 @@ class ArxivPaperDownloader:
         :param arxiv_id: str, the paper ID to download
         """
         try:
-            # Build the PDF URL based on the paper ID
             pdf_url = f'https://arxiv.org/pdf/{arxiv_id}.pdf'
-
-            # Send a GET request to the PDF URL
-            response = requests.get(pdf_url, stream=True)
-
-            # Check if the request was successful (status code: 200)
+            response = requests.get(pdf_url, stream=True, timeout=10)
             if response.status_code == 200:
-                # Save the PDF file in the output folder
                 with open(os.path.join(self.output_folder, f'{arxiv_id}.pdf'), 'wb') as f:
                     for chunk in response.iter_content(chunk_size=8192):
                         f.write(chunk)
@@ -44,23 +46,33 @@ class ArxivPaperDownloader:
         for paper_id in paper_ids:
             self.download_paper(paper_id)
 
+    def download_papers_from_file(self, filename):
+        """
+        Reads a text file containing paper IDs and titles, and downloads the corresponding papers.
 
-# Constructive feedback:
-# 1. Create a class named ArxivPaperDownloader to better encapsulate functionality.
-# 2. Separate the functionality of downloading a single paper and multiple papers into two different methods.
-# 3. Use the 'stream=True' option in requests.get to handle large files more efficiently.
-# 4. Use iter_content to download files in chunks.
-
-# Example usage:
-
-# Specify the paper IDs you want to download
-paper_ids = [   '2303.08774', # GOT-4 Technical Report
-                '2302.13971', # Llama Paper
-                ""
+        :param filename: str, the path to the text file
+        """
+        with open(filename, mode='r', encoding='utf-8') as f:
+            lines = f.readlines()
+            paper_ids = [
+                self.extract_paper_id(line) for line in lines
+                if self.extract_paper_id(line) is not None
             ]
+            self.download_papers(paper_ids)
 
-# Instantiate the downloader with the output folder where you want to save the downloaded papers
-downloader = ArxivPaperDownloader('arxiv_papers')
+    @staticmethod
+    def extract_paper_id(line):
+        """
+        Extracts the paper ID from a line of text.
 
-# Download the papers
-downloader.download_papers(paper_ids)
+        :param line: str, a line of text containing a paper ID
+        :return: str or None, the extracted paper ID or None if not found
+        """
+        match = re.search(r'\[(\d{4}\.\d{5})\]', line)
+        return match.group(1) if match else None
+
+
+if __name__ == '__main__':
+    FILENAME = 'paper_ids.txt'
+    downloader = ArxivPaperDownloader('arxiv_papers')
+    downloader.download_papers_from_file(FILENAME)
