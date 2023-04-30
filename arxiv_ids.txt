@@ -1,0 +1,13 @@
+[2203.02155] Training language models to follow instructions with human feedback
+[2203.11171] SELF-CONSISTENCY IMPROVES CHAIN OF THOUGHT REASONING IN LANGUAGE MODELS
+1701.06049 # Interactive Learning from Policy-Dependent Human 
+[1706.03741] Deep reinforcement learning from human preferences
+[2005.14165] Language Models are Few-Shot Learners
+[1909.08593] Fine-Tuning Language Models from Human Preferences
+[2009.01325] Learning to summarize from human feedback
+[2109.10862] Recursively Summarizing Books with Human Feedback
+[2112.09332] WebGPT: Browser-assisted question-answering with human feedback
+
+
+
+
