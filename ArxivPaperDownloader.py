@@ -12,7 +12,8 @@ class ArxivPaperDownloader:
         """
         Initializes the ArxivPaperDownloader with the specified output folder.
         
-        :param output_folder: str, the folder where downloaded papers will be saved (default: 'arxiv_papers')
+        :param output_folder: str, the folder where downloaded papers will be 
+        saved (default: 'arxiv_papers')
         """
         self.output_folder = output_folder
         if not os.path.exists(output_folder):
