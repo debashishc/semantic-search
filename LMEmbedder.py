@@ -1,5 +1,4 @@
 import os
-
 import pinecone
 import torch
 from abc import ABC, abstractmethod

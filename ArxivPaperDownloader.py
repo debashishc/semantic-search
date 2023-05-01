@@ -1,7 +1,7 @@
+import argparse
 import os
 import re
 import requests
-import argparse
 
 class ArxivPaperDownloader:
     """

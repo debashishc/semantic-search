@@ -1,6 +1,6 @@
-import pypdf
 import docx
 import os
+import pypdf
 
 class DocumentReader:
     """
