@@ -1,0 +1,15 @@
+[2203.02155] Training language models to follow instructions with human feedback
+[2203.11171] SELF-CONSISTENCY IMPROVES CHAIN OF THOUGHT REASONING IN LANGUAGE MODELS
+[1701.06049] Interactive Learning from Policy-Dependent Human Feedback
+[1706.03741] Deep reinforcement learning from human preferences
+[2005.14165] Language Models are Few-Shot Learners
+[1909.08593] Fine-Tuning Language Models from Human Preferences
+[2009.01325] Learning to summarize from human feedback
+[2109.10862] Recursively Summarizing Books with Human Feedback
+[2112.09332] WebGPT: Browser-assisted question-answering with human feedback
+[2209.14375] Improving alignment of dialogue agents via targeted human judgements
+[2204.05862] Training a Helpful and Harmless Assistant with Reinforcement Learning from Human Feedback
+[2208.02294] Dynamic Planning in Open-Ended Dialogue using Reinforcement Learning
+[2210.01241] Is Reinforcement Learning (Not) for Natural Language Processing: Benchmarks, Baselines, and Building Blocks for Natural Language Policy Optimization
+[2203.11147] Teaching language models to support answers with verified quotes
+[2304.13712] Harnessing the Power of LLMs in Practice: A Survey on ChatGPT and Beyond
